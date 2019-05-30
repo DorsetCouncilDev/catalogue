@@ -5,8 +5,12 @@
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title>Homepage</title>
     <link href="/css/main.css" rel="stylesheet">
-
-    
+    <script src="/javascript/map.js"></script>
+    <style>#map,#pan{
+      width:500px;
+      height:500px;
+  }
+      </style>
 </head>
 
 <body>
@@ -15,9 +19,10 @@
 
 
         <nav aria-label="breadcrumb">
-          <ol class="ad-breadcrumb">
-            <li class="breadcrumb-item"><a href="/catalogue">Search</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{document.reference}}</li>
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/catalogue">Indexes</a></li>
+            <li class="breadcrumb-item"><a href="/catalogue/{{index.reference}}">{{index.name}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{document.name}}</li>
           </ol>
         </nav>
 
@@ -35,6 +40,37 @@
               <p class="mt-0"> {{property.value}}</p>
             </div>
             {% endfor %}
+
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVLqUxdgLoBovYi83r-2YZNgvZFlsJR2g&callback=initMap" async defer></script>
+
+
+            {% if document.locations.length > 0 %}
+            <section>
+<h2>Location</h2>
+
+                {% for location in document.locations %}
+
+
+                    <input class="location-lat" type="hidden" value="{{location.latitude}}">
+    <input class="location-lng" type="hidden" value="{{location.longitude}}">
+    <input class="location-street-lat" type="hidden" value="{{location.streetviewLatitude}}">
+    <input class="location-street-lng" type="hidden" value="{{location.streetviewLongitude}}">
+    <input class="location-street-heading" type="hidden" value="{{location.streetviewHeading}}">
+    <input class="location-street-pitch" type="hidden" value="{{location.streetviewPitch}}">
+    
+    <section class="d-flex justify-content-between">
+    <div id="map">
+
+
+                    </div>
+                    <div id="pan">
+
+                    </div>
+                  </section>
+                {% endfor %}
+            </section>
+            {% endif %}
     </div>
     </div>
 </body>

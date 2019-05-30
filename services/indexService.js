@@ -9,9 +9,19 @@ axios.interceptors.request.use(request => {
 })
 */
 
-exports.getIndex = function(indexName) {
-    return axios.get(indexName);
+exports.getIndex = async function(indexReference) {
+  var index = null;
+  await axios.get(indexReference).then((response)=>{
+    index = response.data;
+  })
+  return index;
 }
-
+ exports.getIndexes = async function(){
+  var indexes = null; 
+  await axios.get().then((response)=>{
+    indexes = response.data;
+  })
+  return indexes;
+}
 
 

@@ -31,7 +31,7 @@ function startNodemon(done) {
   }
   function startBrowserSync(done){
     browserSync.init({
-      proxy: "http://localhost:3000",
+      proxy: "http://BR90RWGBJ:3000",
       files: ["public/**/*.*"],
       browser: "chrome",
       port: 5000,

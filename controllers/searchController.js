@@ -1,7 +1,7 @@
 const axios = require("axios");
 const searchService = require("../services/searchService");
 var indexService = require("../services/indexService");
-var documentTypesService = require("../services/documentTypesService");
+
 
 exports.search = async function(req,res){
     
@@ -9,22 +9,14 @@ exports.search = async function(req,res){
 
     // set index
     // index name submitted
-    if(req.body.indexName){
-        indexName = req.body.indexName
-        req.session.indexName = indexName;
-    }
-    // existing index in session
-    else if (req.session.indexName)
-        indexName = req.session.indexName;
-    // default index
-    else
-        indexName = "Brokerage"
-        
-    var documentTypes =  await documentTypesService.getDocumentTypes(indexName);
+    
+    var indexReference = req.params.indexName;
+    var index = await indexService.getIndex(indexReference);
+    var documentTypes =  index.documentTypes;
     var params = [];
 
     if((Object.keys(req.body).length > 0)){   
-        params = await searchService.parseSearchParameters(documentTypes,req.body);
+        params = searchService.parseSearchParameters(documentTypes,req.body);
         req.session.searchParams = params;
     }
     else if (req.session.searchParams){
@@ -37,8 +29,8 @@ exports.search = async function(req,res){
     
     var searchParams = { "documentTypes":params }
     
-    await searchService.searchDocuments(searchParams, indexName).then((response=>{
-        return res.render('index.html',{"results":response.data,"documentTypes":documentTypes,"params":params, "indexName":indexName});
+    await searchService.searchDocuments(searchParams, indexReference).then((response=>{
+        return res.render('search.html',{"results":response.data,"params":params, "index":index});
     })).catch((err)=>{
         console.log("error " + err);
     })

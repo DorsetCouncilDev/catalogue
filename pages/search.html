@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>Homepage</title>
+    <link href="/css/main.css" rel="stylesheet">
+
+    
+</head>
+
+<body>
+    <div class="container">
+            {% include "components/header.html" %}
+            <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="/catalogue">Indexes</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">{{index.name}}</li>
+                    </ol>
+                  </nav>
+          
+      <h1>{{index.name}}</h1>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                            <h2 class="heading-2 mt-2 mb-3">Search</h2>
+        <form action="" method="POST">
+            <h3 class="heading-3 mb-2">Document types</h3>
+            {% for documentType in index.documentTypes %}
+                {% include "components/checkbox.html" %}
+            {%- endfor %}
+            <button class="btn btn-primary mt-3">Search</button>
+        </form>
+    </div>
+    </div>
+    </div>
+    
+    <div class="col-sm-8">
+ 
+       {% if results.length == 0 %} 
+            <p>No results found</p>
+
+       {% else %}
+
+    <ul class="list-unstyled">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="heading-2 mb-3">Found {{results.length}} documents</h2>
+                {% for result in results %}
+                    {% include "components/search-result-document.html" %}
+                {%- endfor %}
+            </div>
+
+        </div>
+        {% endif %}
+        </ul>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

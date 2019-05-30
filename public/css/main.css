@@ -6985,22 +6985,8 @@ a.text-dark:hover, a.text-dark:focus {
       font-size: 48px;
       margin-top: 5px; } }
 
-.ad-breadcrumb {
-  list-style: none;
-  display: inline-flex;
-  flex-wrap: nowrap;
-  padding-left: 0;
-  flex-grow: 2;
-  margin-bottom: 2px;
-  font-size: 16px; }
-  .ad-breadcrumb li {
-    float: left;
-    margin-right: 5px; }
-    .ad-breadcrumb li:before {
-      content: ''; }
-    .ad-breadcrumb li:last-child {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis; }
-      .ad-breadcrumb li:last-child:after {
-        content: ''; }
+.breadcrumb {
+  background: none;
+  padding: 0; }
+  .breadcrumb .active {
+    color: black; }
