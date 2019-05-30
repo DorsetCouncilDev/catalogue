@@ -1,0 +1,177 @@
+// Radio buttons & checkboxes
+$gutter-one-third: 5px;
+// By default, multiple choice inputs stack vertically
+.multiple-choice {
+
+  display: block;
+  float: none;
+  clear: left;
+  position: relative;
+
+  padding: 0 0 0 38px;
+  margin-bottom: $gutter-one-third;
+
+    /*
+  @include media(tablet) {
+    float: left;
+  }
+    */
+
+  // Absolutely position inputs within label, to allow text to wrap
+  input {
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    width: 38px;
+    height: 38px;
+    z-index: 1;
+    opacity:0;
+  }
+
+  label {
+    cursor: pointer;
+    padding: 8px $gutter-one-third 9px 12px;
+    display: block;
+      line-height:1;
+    // remove 300ms pause on mobile
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+
+    /*
+    @include media(tablet) {
+      float: left;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+      */
+  }
+
+  [type=radio] + label::before {
+    content: "";
+    border: 1px solid black;
+    background: white;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+  }
+
+  [type=radio] + label::after {
+    content: "";
+    border: 10px solid black;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  [type=checkbox] + label::before {
+    content: "";
+    border: solid 2px black;
+    background: white;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  [type=checkbox] + label::after {
+    content: "";
+    border: solid;
+    border-width: 0 0 2px 2px;
+    background: twhite;
+    border-top-color: transparent;
+    width: 25px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    -moz-transform: rotate(-45deg); // Firefox 15 compatibility
+    -o-transform: rotate(-45deg); // Opera 12.0 compatibility
+    -webkit-transform: rotate(-45deg); // Safari 8 compatibility
+    -ms-transform: rotate(-45deg); // IE9 compatibility
+    transform: rotate(-50deg);
+    opacity: 0;
+  }
+
+  // Focused state
+  [type=radio]:focus + label::before {
+    box-shadow: 0 0 0 1px $orange;
+  }
+
+  [type=checkbox]:focus + label::before {
+    box-shadow: 0 0 0 1px $orange;
+  }
+
+  // Selected state
+  input:checked + label::after {
+    opacity: 1;
+  }
+    
+
+
+  // Disabled state
+  input:disabled {
+    cursor: default;
+  }
+
+  input:disabled + label {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  &:last-child,
+  &:last-of-type {
+    margin-bottom: 0;
+  } 
+    label.small{
+        padding: 5px 5px 1px 2px;
+        margin-bottom: 1px;
+            margin-top: 10px;
+    }
+    [type=radio] + label.small::before {
+        width: 24px;
+        height: 24px;
+    }
+    [type=radio] + label.small::after {
+        top: 5px;
+        left: 5px;
+        border: 7px solid;
+    }
+    [type=checkbox] + label.small::before {
+        width: 24px;
+        height: 24px;
+    }
+    [type=checkbox] + label.small::after {
+        width: 20px;
+        height: 8px;
+        top: 7px;
+        left: 3px;
+        transform: rotate(-55deg);
+    }
+    input.small {
+        width:24px;
+        height:24px;
+    }
+}
+
+// To sit multiple choice inputs next to each other, use .inline on parent
+.inline .multiple-choice {
+  clear: none;
+/*
+  @include media (tablet) {
+    margin-bottom: 0;
+    margin-right: $gutter;
+  }
+    */
+}
+    
+ 
+

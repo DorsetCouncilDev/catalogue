@@ -1,0 +1,761 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Api Documentation",
+        "version": "1.0",
+        "title": "Api Documentation",
+        "termsOfService": "urn:tos",
+        "contact": {},
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "host": "apptest.dorsetcc.gov.uk",
+    "basePath": "/catalogue",
+    "tags": [{
+        "name": "document-rest-controller",
+        "description": "Document Rest Controller"
+    }, {
+        "name": "document-type-rest-controller",
+        "description": "Document Type Rest Controller"
+    }, {
+        "name": "index-rest-controller",
+        "description": "Index Rest Controller"
+    }],
+    "paths": {
+        "/api/indexes": {
+            "get": {
+                "tags": ["index-rest-controller"],
+                "summary": "getIndexes",
+                "operationId": "getIndexesUsingGET",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Iterable«Index»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/test": {
+            "get": {
+                "tags": ["document-type-rest-controller"],
+                "summary": "getDocumentTypes",
+                "operationId": "getDocumentTypesUsingGET",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "index",
+                    "in": "path",
+                    "description": "index",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Iterable«DocumentType»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "post": {
+                "tags": ["document-type-rest-controller"],
+                "summary": "test",
+                "operationId": "testUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/test/{documentTypeReference}": {
+            "get": {
+                "tags": ["document-type-rest-controller"],
+                "summary": "getDocumentType",
+                "operationId": "getDocumentTypeUsingGET",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "documentTypeReference",
+                    "in": "path",
+                    "description": "documentTypeReference",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "index",
+                    "in": "path",
+                    "description": "index",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/DocumentType"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/test/{documentTypeReference}/properties": {
+            "get": {
+                "tags": ["document-type-rest-controller"],
+                "summary": "getProperties",
+                "operationId": "getPropertiesUsingGET",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "documentTypeReference",
+                    "in": "path",
+                    "description": "documentTypeReference",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "index",
+                    "in": "path",
+                    "description": "index",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Property"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/test/{documentTypeReference}/properties/searchable": {
+            "get": {
+                "tags": ["document-type-rest-controller"],
+                "summary": "getPropertiesSearchable",
+                "operationId": "getPropertiesSearchableUsingGET",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "documentTypeReference",
+                    "in": "path",
+                    "description": "documentTypeReference",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "index",
+                    "in": "path",
+                    "description": "index",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Property"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/{indexReference}": {
+            "get": {
+                "tags": ["index-rest-controller"],
+                "summary": "get",
+                "operationId": "getUsingGET",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "indexReference",
+                    "in": "path",
+                    "description": "indexReference",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IndexView"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/{indexReference}/documentTypes/{documentTypeReference}": {
+            "get": {
+                "tags": ["index-rest-controller"],
+                "summary": "getDocumentType",
+                "operationId": "getDocumentTypeUsingGET_1",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "documentTypeReference",
+                    "in": "path",
+                    "description": "documentTypeReference",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "indexReference",
+                    "in": "path",
+                    "description": "indexReference",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/DocumentTypeView"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/{indexReference}/mail/{mailingListReference}": {
+            "post": {
+                "tags": ["index-rest-controller"],
+                "summary": "mail",
+                "operationId": "mailUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "indexReference",
+                    "in": "path",
+                    "description": "indexReference",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "mailingListReference",
+                    "in": "path",
+                    "description": "mailingListReference",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "in": "body",
+                    "name": "message",
+                    "description": "message",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/Message"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseEntity"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/{indexReference}/properties": {
+            "get": {
+                "tags": ["index-rest-controller"],
+                "summary": "getProperties",
+                "operationId": "getPropertiesUsingGET_1",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "indexReference",
+                    "in": "path",
+                    "description": "indexReference",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Property"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/{index}/documents": {
+            "post": {
+                "tags": ["document-rest-controller"],
+                "summary": "search",
+                "operationId": "searchUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "in": "body",
+                    "name": "apiSearchRequest",
+                    "description": "apiSearchRequest",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/ApiSearchRequest"
+                    }
+                }, {
+                    "name": "index",
+                    "in": "path",
+                    "description": "index",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DocumentView"
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/indexes/{index}/documents/{documentReference}": {
+            "get": {
+                "tags": ["document-rest-controller"],
+                "summary": "getDocument",
+                "operationId": "getDocumentUsingGET",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "documentReference",
+                    "in": "path",
+                    "description": "documentReference",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "index",
+                    "in": "path",
+                    "description": "index",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/DocumentView"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "ApiSearchRequest": {
+            "type": "object",
+            "properties": {
+                "documentName": {
+                    "type": "string"
+                },
+                "documentTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "location": {
+                    "$ref": "#/definitions/LocationParameter"
+                },
+                "properties": {
+                    "type": "object"
+                },
+                "propertyValueParameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PropertyValueParameter"
+                    }
+                }
+            },
+            "title": "ApiSearchRequest"
+        },
+        "CatalogueView": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                }
+            },
+            "title": "CatalogueView"
+        },
+        "Coordinate": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            },
+            "title": "Coordinate"
+        },
+        "DocumentType": {
+            "type": "object",
+            "properties": {
+                "colour": {
+                    "type": "string"
+                },
+                "longText": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                }
+            },
+            "title": "DocumentType"
+        },
+        "DocumentTypeView": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "properties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PropertyView"
+                    }
+                },
+                "reference": {
+                    "type": "string"
+                }
+            },
+            "title": "DocumentTypeView"
+        },
+        "DocumentView": {
+            "type": "object",
+            "title": "DocumentView"
+        },
+        "Index": {
+            "type": "object",
+            "properties": {
+                "longText": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                }
+            },
+            "title": "Index"
+        },
+        "IndexView": {
+            "type": "object",
+            "properties": {
+                "documentTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CatalogueView"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                }
+            },
+            "title": "IndexView"
+        },
+        "Iterable«DocumentType»": {
+            "type": "object",
+            "title": "Iterable«DocumentType»"
+        },
+        "Iterable«Index»": {
+            "type": "object",
+            "title": "Iterable«Index»"
+        },
+        "LocationParameter": {
+            "type": "object",
+            "properties": {
+                "distanceUnit": {
+                    "type": "string",
+                    "enum": ["MILE", "NAUTICAL_MILE", "ROD", "KILOMETER", "METER"]
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "maxCoordinate": {
+                    "$ref": "#/definitions/Coordinate"
+                },
+                "minCoordinate": {
+                    "$ref": "#/definitions/Coordinate"
+                },
+                "range": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "LocationParameter"
+        },
+        "Message": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                }
+            },
+            "title": "Message"
+        },
+        "Property": {
+            "type": "object",
+            "properties": {
+                "listValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PropertyListValue"
+                    }
+                },
+                "longText": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "relation": {
+                    "type": "string",
+                    "enum": ["LessThan", "Equal", "GreaterThan", "Between", "Contains"]
+                },
+                "searchOperator": {
+                    "type": "string",
+                    "enum": ["And", "Or"]
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["Boolean", "Checkbox", "Date", "DateRange", "List", "MultiSelectList", "Number", "NumberRange", "Text", "TextArea"]
+                }
+            },
+            "title": "Property"
+        },
+        "PropertyListValue": {
+            "type": "object",
+            "properties": {
+                "longText": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                }
+            },
+            "title": "PropertyListValue"
+        },
+        "PropertyValueParameter": {
+            "type": "object",
+            "properties": {
+                "property": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "title": "PropertyValueParameter"
+        },
+        "PropertyView": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["Boolean", "Checkbox", "Date", "DateRange", "List", "MultiSelectList", "Number", "NumberRange", "Text", "TextArea"]
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "title": "PropertyView"
+        },
+        "ResponseEntity": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "object"
+                },
+                "statusCode": {
+                    "type": "string",
+                    "enum": ["100", "101", "102", "103", "200", "201", "202", "203", "204", "205", "206", "207", "208", "226", "300", "301", "302", "303", "304", "305", "307", "308", "400", "401", "402", "403", "404", "405", "406", "407", "408", "409", "410", "411", "412", "413", "414", "415", "416", "417", "418", "419", "420", "421", "422", "423", "424", "426", "428", "429", "431", "451", "500", "501", "502", "503", "504", "505", "506", "507", "508", "509", "510", "511"]
+                },
+                "statusCodeValue": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "ResponseEntity"
+        }
+    }
+}

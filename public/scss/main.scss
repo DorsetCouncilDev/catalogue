@@ -1,0 +1,116 @@
+// @import "~govuk_template_jinja/assets/stylesheets/fonts";
+$blue : #09476D;
+$indigo : #6610f2;
+$purple : #2e358b;
+$pink : pink;
+$red : #b10e1e;
+$orange : orange;
+$yellow : yellow;
+$green : darkgreen;
+$teal : #20c997;
+$cyan : #17a2b8;
+
+$warning: $orange;
+$enable-rounded : false;
+$enable-shadows : false;
+
+$font-size-base: 1rem * 1.1875;
+$input-border-color: black;
+$input-focus-border-color: $orange;
+$input-btn-focus-color : $orange;
+$input-btn-focus-box-shadow : $orange;
+
+$alert-border-level: 0;
+
+$container-max-widths: ( sm: 640px,
+md: 820px,
+lg: 960px,
+xl: 1140px) !default;
+
+$font-family-base: arial;
+
+@import './node_modules/bootstrap/scss/bootstrap';
+@import 'multiple-choice';
+
+.heading-1{
+    font-size:28px;
+    font-weight:600;
+}
+.heading-2{
+    font-size:24px;
+    font-weight:600;
+}
+.heading-3{
+    font-size: 22px;
+}
+.heading-4{
+    font-size: 19px;
+    font-weight: 600;
+}
+
+@import 'mixins/breakpoints';
+
+.white-header {
+    display: flex;
+    padding: 5px;
+    margin-bottom: 0;
+
+    .logo {
+        height:90px;
+        margin-right:20px;
+        /* Negative margin to move logo closer to left side, breaking out of bootstrap container. */
+        margin-left:-15px;
+        /* content:url("../images/dorset-council-logo-circle-white.PNG");      */
+    }
+
+    .title {
+        color: #3F3F3F;
+        font-size: 24px;
+        font-weight: 500;
+        margin-top: 12px;
+    }
+}
+
+@include breakpoint(medium) {
+    .white-header {
+        margin-bottom:30px;
+        .logo {
+            margin-left:0;
+            margin-right:50px;
+            /* content:url("../images/dorsetcouncil-logo.svg");   */    
+        }
+        .title{
+            font-size:48px;
+            margin-top: 5px;
+        }
+    }
+}
+
+.ad-breadcrumb {
+    list-style: none;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    padding-left: 0;
+    flex-grow: 2;
+    margin-bottom: 2px;
+    font-size: 16px;
+  
+    li {
+      float: left;
+      margin-right: 5px;
+  
+    
+      &:before {
+        content: '';
+      }
+      &:last-child {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+  
+        &:after {
+          content: '';
+        }
+      }
+    }
+  }
