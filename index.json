@@ -1,0 +1,237 @@
+{
+    "name": "Advertise",
+    "reference": "advertise",
+    "documentTypes": [{
+        "name": "Bin Lid Advertising",
+        "reference": "bin-lid-advertising",
+        "properties": [{
+            "name": "Price",
+            "reference": "price",
+            "type": "Number"
+        }, {
+            "name": "Duration of Advertising",
+            "reference": "duration-of-advertising",
+            "type": "Text"
+        }, {
+            "name": "Overview",
+            "reference": "overview",
+            "type": "Text"
+        }, {
+            "name": "Availability",
+            "reference": "availability",
+            "type": "Text"
+        }, {
+            "name": "Fee Per Month",
+            "reference": "fee-per-month",
+            "type": "Text"
+        }, {
+            "name": "Available",
+            "reference": "available",
+            "type": "Boolean"
+        }, {
+            "name": "Description",
+            "reference": "description",
+            "type": "TextArea"
+        }]
+    }, {
+        "name": "Boundary Signage Sponsorship",
+        "reference": "boundary-signage-sponsorship",
+        "properties": [{
+            "name": "Price",
+            "reference": "price",
+            "type": "Number"
+        }, {
+            "name": "Duration of Sponsorship",
+            "reference": "duration-of-sponsorship",
+            "type": "Text"
+        }, {
+            "name": "Number of Signs",
+            "reference": "number-of-signs",
+            "type": "Text"
+        }, {
+            "name": "Sign Sizes",
+            "reference": "sign-sizes",
+            "type": "Text"
+        }, {
+            "name": "Availability",
+            "reference": "availability",
+            "type": "Text"
+        }, {
+            "name": "Available",
+            "reference": "available",
+            "type": "Boolean"
+        }, {
+            "name": "Description",
+            "reference": "description",
+            "type": "TextArea"
+        }]
+    }, {
+        "name": "Bus Shelter Advertising",
+        "reference": "bus-shelter-advertising",
+        "properties": [{
+            "name": "Price",
+            "reference": "price",
+            "type": "Number"
+        }, {
+            "name": "Duration of Advertising",
+            "reference": "duration-of-advertising",
+            "type": "Text"
+        }, {
+            "name": "Overview",
+            "reference": "overview",
+            "type": "Text"
+        }, {
+            "name": "Availability",
+            "reference": "availability",
+            "type": "Text"
+        }, {
+            "name": "Available",
+            "reference": "available",
+            "type": "Boolean"
+        }, {
+            "name": "Description",
+            "reference": "description",
+            "type": "TextArea"
+        }]
+    }, {
+        "name": "Car Parking Ticket Advertising",
+        "reference": "car-parking-ticket-advertising",
+        "properties": [{
+            "name": "Price",
+            "reference": "price",
+            "type": "Number"
+        }, {
+            "name": "Duration of Advertising",
+            "reference": "duration-of-advertising",
+            "type": "Text"
+        }, {
+            "name": "Overview",
+            "reference": "overview",
+            "type": "Text"
+        }, {
+            "name": "Availability",
+            "reference": "availability",
+            "type": "Text"
+        }, {
+            "name": "Available",
+            "reference": "available",
+            "type": "Boolean"
+        }, {
+            "name": "Description",
+            "reference": "description",
+            "type": "TextArea"
+        }]
+    }, {
+        "name": "eNewsletter Sponsorship",
+        "reference": "enewsletter-sponsorship",
+        "properties": [{
+            "name": "Price",
+            "reference": "price",
+            "type": "Number"
+        }, {
+            "name": "Duration of Advertising",
+            "reference": "duration-of-advertising",
+            "type": "Text"
+        }, {
+            "name": "Overview",
+            "reference": "overview",
+            "type": "Text"
+        }, {
+            "name": "Availability",
+            "reference": "availability",
+            "type": "Text"
+        }, {
+            "name": "Available",
+            "reference": "available",
+            "type": "Boolean"
+        }, {
+            "name": "Description",
+            "reference": "description",
+            "type": "TextArea"
+        }]
+    }, {
+        "name": "Residents' Magazine Advertising",
+        "reference": "residents-magazine-advertising",
+        "properties": []
+    }, {
+        "name": "Roundabout Sponsorship",
+        "reference": "roundabout-sponsorship",
+        "properties": [{
+            "name": "Price",
+            "reference": "price",
+            "type": "Number"
+        }, {
+            "name": "Duration of Sponsorship",
+            "reference": "duration-of-sponsorship",
+            "type": "Text"
+        }, {
+            "name": "Overview",
+            "reference": "overview",
+            "type": "Text"
+        }, {
+            "name": "Number of Signs",
+            "reference": "number-of-signs",
+            "type": "Text"
+        }, {
+            "name": "Sign Sizes",
+            "reference": "sign-sizes",
+            "type": "Text"
+        }, {
+            "name": "Traffic Flow Per 12 Hour Period",
+            "reference": "traffic-flow-per-12-hour-period",
+            "type": "Number"
+        }, {
+            "name": "Sponsorship Fee Per Month",
+            "reference": "sponsorship-fee-per-month",
+            "type": "Text"
+        }, {
+            "name": "Availability",
+            "reference": "availability",
+            "type": "Text"
+        }, {
+            "name": "Description",
+            "reference": "description",
+            "type": "TextArea"
+        }]
+    }, {
+        "name": "Timetable Case Posters",
+        "reference": "timetable-case-posters",
+        "properties": []
+    }, {
+        "name": "Vehicle Advertising",
+        "reference": "vehicle-advertising",
+        "properties": [{
+            "name": "Duration of Advertising",
+            "reference": "duration-of-advertising",
+            "type": "Text"
+        }, {
+            "name": "Price",
+            "reference": "price",
+            "type": "Number"
+        }, {
+            "name": "Overview",
+            "reference": "overview",
+            "type": "Text"
+        }, {
+            "name": "Sign Sizes",
+            "reference": "sign-sizes",
+            "type": "Text"
+        }, {
+            "name": "Availability",
+            "reference": "availability",
+            "type": "Text"
+        }, {
+            "name": "Fee Per Month",
+            "reference": "fee-per-month",
+            "type": "Text"
+        }, {
+            "name": "Available",
+            "reference": "available",
+            "type": "Boolean"
+        }, {
+            "name": "Description",
+            "reference": "description",
+            "type": "TextArea"
+        }]
+    }]
+}

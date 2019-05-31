@@ -94,3 +94,31 @@ $font-family-base: arial;
     }
 }
  
+
+a{
+    color:#005EA5;
+&:focus{
+    outline:orange solid 2px;
+}
+&:hover{
+    color:#2B8CC4;
+}
+}
+
+.searching{
+    transition:opacity .5s;
+    opacity:.2;
+}
+
+#resultSection{
+    animation:results-entry 1s;
+}
+
+@keyframes results-entry {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }

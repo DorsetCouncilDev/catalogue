@@ -4,9 +4,7 @@
     <meta charset=utf-8>
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title>Homepage</title>
-    <link href="/css/main.css" rel="stylesheet">
-
-    
+    <link href="/css/main.css" rel="stylesheet"> 
 </head>
 
 <body>
@@ -22,14 +20,18 @@
       <h1>{{index.name}}</h1>
         <div class="row">
             <div class="col-sm-4">
-                <div class="card">
+                <div class="card border-light">
                     <div class="card-body">
                             <h2 class="heading-2 mt-2 mb-3">Search</h2>
-        <form action="" method="POST">
+        <form action="" method="POST" id="searchForm">
             <h3 class="heading-3 mb-2">Document types</h3>
             {% for documentType in index.documentTypes %}
                 {% include "components/checkbox.html" %}
             {%- endfor %}
+            <h3 class="heading-3 mb-2">Properties</h3>
+            {% for property in index.documentTypes[1].properties %}
+            {% include "components/property-search-item.html" %}
+        {%- endfor %}
             <button class="btn btn-primary mt-3">Search</button>
         </form>
     </div>
@@ -43,20 +45,33 @@
 
        {% else %}
 
-    <ul class="list-unstyled">
-        <div class="card">
+
+        <div class="card border-light" id="resultSection">
             <div class="card-body">
-                <h2 class="heading-2 mb-3">Found {{results.length}} documents</h2>
+                    <div class="d-flex justify-content-between"><h2 class="heading-2 mb-3">Found {{results.length}} documents</h2><div><a href="/catalogue/{{index.reference}}?sort={{sort}}">Sort documents <img src="/images/sort-a-z.svg"></a></div></div>
+                <ul class="list-unstyled">
                 {% for result in results %}
                     {% include "components/search-result-document.html" %}
                 {%- endfor %}
+            </ul>
             </div>
 
         </div>
         {% endif %}
-        </ul>
+     
     </div>
     </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            var searchForm = document.getElementById("searchForm");
+            var resultSection = document.getElementById("resultSection");
+            searchForm.addEventListener("submit",function(){
+                console.log("form submitted")
+                resultSection.classList.add("searching");
+            })
+        })
+    </script>
 </body>
 </html>
