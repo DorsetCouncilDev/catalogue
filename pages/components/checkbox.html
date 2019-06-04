@@ -1,6 +1,6 @@
 <div class="form-group">
     <div class="multiple-choice" :title="type.name">
         <input type="checkbox" class="form-control" id="{{documentType.reference}}" name="{{documentType.reference}}" {% if documentType.reference in params.documentTypes %} checked {% endif %}>
-        <label for="{{documentType.reference}}"  class="mutliple-choice-label small">{{documentType.name}}</label>
+        <label for="{{documentType.reference}}"  class="mutliple-choice-label small">{{documentType.name}} <a href="/catalogue/{{index.reference}}/document-type/{{documentType.reference}}">advanced</a></label>
     </div>
 </div>

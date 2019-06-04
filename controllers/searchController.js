@@ -1,10 +1,10 @@
-const axios = require("axios");
 const searchService = require("../services/searchService");
 var indexService = require("../services/indexService");
 
+var _lodash = require("lodash");
 
 exports.search = async function(req,res){
-
+    console.log("reached search");
     var indexReference = req.params.indexName;
     var sort = "az";
     if(req.query.sort){
@@ -33,38 +33,41 @@ exports.search = async function(req,res){
     }
 
     var index = await indexService.getIndex(indexReference);
-    console.log("got index")
     var documentTypes =  index.documentTypes;
-    console.log("types size " + documentTypes.length);
     var params = {};
 
-    if((Object.keys(req.body).length > 0)){
-        console.log("search submitted");   
+    if((Object.keys(req.body).length > 0)){ 
         params.documentTypes = searchService.parseDocumentTypesSearch(documentTypes,req.body);
         params.properties = searchService.parsePropertiesSearch(documentTypes,req.body);
         req.session.searchParams = params;
-        console.log("types params: " + params.documentTypes)
     }
     else if (req.session.searchParams){
-        console.log("has search params in session")
         params = req.session.searchParams
     }
     else{
-        console.log("inital load, search all types")
         params.documentTypes = documentTypes.map((t)=> t.reference);
         req.session.searchParams = params;
-        console.log("initial search types " + params.documentTypes.length);
     }
 
-    var testParams = {};
-    testParams.documentTypes = searchService.testDocumentTypes();
-    testParams.properties = searchService.testParameters();
+    // var testParams = {};
+    // testParams.documentTypes = searchService.testDocumentTypes();
+    // testParams.properties = searchService.testParameters();
 
-    await searchService.searchDocuments(testParams, indexReference).then((response=>{
+
+
+   function isChecked(typeRef,item){
+       if(typeof params != 'undefined' && typeof params.properties != 'undefined' && typeof params.properties[typeRef] != 'undefined'){ 
+           var list = params.properties[typeRef]
+            return list.includes(item);
+       } 
+       return false;
+    }
+
+    await searchService.searchDocuments(params, indexReference).then((response=>{
         var results = response.data;
         if(sort == "za")
             results.sort((a,b)=> (a.name > b.name) ? -1 : 1)
-        return res.render('search.html',{"results":response.data,"params":params, "index":index,"sort":sort});
+        return res.render('search.html',{"results":response.data,"params":params, "index":index,"sort":sort,isChecked:isChecked});
     })).catch((err)=>{
         console.log("error " + err);
     })

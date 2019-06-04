@@ -4,11 +4,13 @@ var router = express.Router();
 var search_controller = require("../controllers/searchController");
 var document_controller = require("../controllers/documentController");
 var home_controller = require("../controllers/homeController");
+var advanced_search_controller = require("../controllers/advancedSearchController");
 
 router.get("", home_controller.indexes);
 router.get("/:indexName", search_controller.search);
 router.post("/:indexName", search_controller.search);
-
+router.get("/:indexName/document-type/:documentType",advanced_search_controller.search);
+router.post("/:indexName/document-type/:documentType",advanced_search_controller.search);
 router.get("/:indexName/:documentReference", document_controller.document);
 
 

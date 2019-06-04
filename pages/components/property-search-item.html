@@ -7,32 +7,21 @@
 </div>
 {% endif %}
 
-{% if property.type == 'Checkbox' %}
+{% if (property.type == 'Checkbox') or (property.type == 'List') %}
 <p>{{property.name}}</p>
-{% for option in property.values %}
+
+ {% for option in property.values %}
 <div class="form-group mt-4 mb-4">
-    <div class="multiple-choice">
-        <input type="checkbox" class="form-control" id="{{property.reference}}-{{loop.index}}" name="{{property.reference}}-{{loop.index}}" >
-        <label for="{{property.reference}}-{{loop.index}}"  class="mutliple-choice-label small">{{option}}</label>
-    </div>
-</div>
-{% endfor %}
+            <div class="multiple-choice">
+                    <input type="checkbox" class="form-control" id="{{property.reference}}-{{loop.index}}" name="{{property.reference}}" value="{{option}}" {% if isChecked(property.reference,option) %}checked{% endif %}  >
+                    <label for="{{property.reference}}-{{loop.index}}"  class="mutliple-choice-label small">{{option}}</label>
+                </div>
+            </div>
+            {% endfor %}
+
 {% endif %}
 
-{% if property.type == 'List' %}
-<div class="form-group mt-4 mb-4">
-    <label class="mb-0" for="{{property.reference}}">{{property.name}}</label>
-    <select class="form-control form-control-sm" name="{{property.reference}}">
-        <option disabled selected>choose</option>
-        {% for option in property.values %}
-        <option value="{{option}}">{{option}}</option>
-        {% endfor %}
-    </select>
 
-
-</div>
-
-{% endif %}
 
 
 {% if property.type == 'TextArea' %}

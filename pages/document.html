@@ -33,10 +33,12 @@
             {% for p, property in document.properties %}
             <div class="">
               <p class="mb-0 font-weight-bold">{{ p}}</p> 
-              
+
               {% for v in property.values %}
               <p class="mt-0 mb-0">{{v}}</p>
               {% endfor %}
+          
+          
               <p class="mt-0"> {{property.value}}</p>
             </div>
             {% endfor %}
