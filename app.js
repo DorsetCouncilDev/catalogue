@@ -13,6 +13,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(cookieParser());
 
 
@@ -26,6 +28,8 @@ app.set('view engine', 'html');
 var router = require("./routes/routes");
  app.use("/catalogue",router);
 
+
+ 
 
 // app.get('/', (req, res) => res.render('index.html',{}))
 

@@ -1,55 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset=utf-8>
-    <meta name=viewport content="width=device-width,initial-scale=1">
-    <title>Homepage</title>
-    <link href="/css/main.css" rel="stylesheet">
+  <meta charset=utf-8>
+  <meta name=viewport content="initial-scale=1">
+  <title>Asset</title>
+  <link href="/css/scss/main.css" rel="stylesheet">
+
+
     <script src="/javascript/map.js"></script>
-    <style>#map,#pan{
-      width:500px;
-      height:500px;
+    <style>
+     #map,#pan{
+  height:40vh;
+      width:100%;
+     }
+    @media only screen and (min-width: 600px) {
+    #map,#pan{
+  width:45%;
   }
+  #location-container{
+  display: flex;
+  justify-content: space-between;
+}
+}
+
+
+
+
       </style>
 </head>
 
-<body>
-    <div class="container">
-        {% include "components/header.html" %}
+<body class="govuk-template__body">
+  {% include "components/header.html" %}
+        
+  <main class="govuk-width-container">
+
+    {% from "components/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+    {{ govukBreadcrumbs({
+      items: [
+        {
+          text: "Indexes",
+          href: "/catalogue"
+        },
+        {
+          text: index.name,
+          href: "/catalogue/" + index.reference
+        },
+        {
+          text: documentType.name,
+          href: "/catalogue/" + index.reference + "/document-type/" + documentType.reference
+        },
+        {
+          text: document.name
+        }
+      ]
+    }) }}
+
+    <h1 class="govuk-heading-xl govuk-!-font-size-27 govuk-!-margin-top-4">{{document.name}}</h1>
 
 
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/catalogue">Indexes</a></li>
-            <li class="breadcrumb-item"><a href="/catalogue/{{index.reference}}">{{index.name}}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{document.name}}</li>
-          </ol>
-        </nav>
+    <h2 class="govuk-heading-m">Properties</h3>
 
-        <h2 class="heading-1 mt-4 mb-4">{{document.name}}</h2>
-
-
-        <h3 class="heading-2">Properties</h3>
+      <dl class="govuk-summary-list">
             {% for p, property in document.properties %}
-            <div class="">
-              <p class="mb-0 font-weight-bold">{{ p}}</p> 
-
+  
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">{{ p}}</dt> 
+              <dd class="govuk-summary-list__value">
               {% for v in property.values %}
-              <p class="mt-0 mb-0">{{v}}</p>
+              {{v}}
               {% endfor %}
           
           
-              <p class="mt-0"> {{property.value}}</p>
-            </div>
+              {{property.value}}
+      </dd>
+      </div>
+    
             {% endfor %}
-
+    
+          </dl>
 
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVLqUxdgLoBovYi83r-2YZNgvZFlsJR2g&callback=initMap" async defer></script>
 
 
             {% if document.locations.length > 0 %}
             <section>
-<h2>Location</h2>
+              <h2 class="govuk-heading-m">Location</h2>
 
                 {% for location in document.locations %}
 
@@ -61,7 +97,7 @@
     <input class="location-street-heading" type="hidden" value="{{location.streetviewHeading}}">
     <input class="location-street-pitch" type="hidden" value="{{location.streetviewPitch}}">
     
-    <section class="d-flex justify-content-between">
+    <section id="location-container">
     <div id="map">
 
 
@@ -75,5 +111,6 @@
             {% endif %}
     </div>
     </div>
+
 </body>
 </html>

@@ -5,17 +5,22 @@
     <meta charset=utf-8>
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title>Homepage</title>
-    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/scss/main.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
+<body class="govuk-template__body">
         {% include "components/header.html" %}
+        
+    <main class="govuk-width-container">
+            <span class="govuk-caption-xl">Catalogue</span>
+            <h1 class="govuk-heading-xl">Indexes</h1>
 
-        <ul>
+   
+
+        <ul class="govuk-list">
             {% for index in indexes %}
-            <li><a href="/catalogue/{{index.reference}}">{{index.name}}</a></li>
+            <li><a class="govuk-link" href="/catalogue/{{index.reference}}">{{index.name}}</a></li>
             {% endfor %}
         </ul>
-    </div>
+    </main>
 </body>

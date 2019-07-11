@@ -1,60 +1,59 @@
 const searchService = require("../services/searchService");
 var indexService = require("../services/indexService");
 
-var _lodash = require("lodash");
-
 exports.search = async function (req, res) {
-
-    var params ={};
-console.log("reached post search")
-    var indexReference = req.params.indexName;
-var sort = "qa"
+    var indexReference = req.session.indexReference
     var index = await indexService.getIndex(indexReference);
+    var documentTypes = index.documentTypes;
+    var searchParameters = {};
 
-    var documentType = index.documentTypes.find(type => {
-        return type.reference = req.params.documentType;
+    var documentTypeReference = req.params.documentType;
+    var documentType = documentTypes.find(type => {
+        return type.reference == documentTypeReference;
     })
 
-    console.log("found document type: " + documentType.reference)
-    var types = [];
-    types.push(documentType);
-
-
     function isChecked(typeRef, item) {
-        if (typeof params != 'undefined' && typeof params.properties != 'undefined' && typeof params.properties[typeRef] != 'undefined') {
-            var list = params.properties[typeRef]
+        if (typeof searchParameters != 'undefined' && typeof searchParameters.properties != 'undefined' && typeof searchParameters.properties[typeRef] != 'undefined') {
+            var list = searchParameters.properties[typeRef]
             return list.includes(item);
         }
         return false;
     }
 
     if ((Object.keys(req.body).length > 0)) {
-        console.log("params form found");
-        params.documentTypes = [];
-        params.documentTypes.push(documentType.reference);
-        params.properties = searchService.parsePropertiesSearch(documentType.properties, req.body);
-        req.session.searchParams = params;
-        console.log("status search: ");
-        await searchService.searchDocuments(params, indexReference).then((response => {
-            var results = response.data;
-            console.log("search results: " + results.length);
-            if (sort == "za")
-                results.sort((a, b) => (a.name > b.name) ? -1 : 1)
-            return res.render('search.html', {
-                "results": response.data,
-                "params": params,
-                "index": index,
-                "sort": sort,
-                isChecked: isChecked
-            });
-        })).catch((err) => {
-            console.log("error " + err);
-        })
-    } else {
+        searchParameters.properties = searchService.parsePropertiesSearch(documentType.properties, req.body);
+        req.session.advancedSearchParameters = searchParameters;
+    }
+    else if (req.session.advancedSearchParameters){
+        searchParameters = req.session.advancedSearchParameters;
+    }
+    searchParameters.documentTypes = [documentType.reference];
+
+    var sort = "AZ";
+    if(req.query.sort && req.query.sort == "AZ")
+        sort = "ZA";
+    else if(req.query.sort && req.query.sort == "ZA")
+        sort = "AZ";
+    else if(req.session.advSort)
+        sort = req.session.advSort;
+        
+    req.session.advSort = sort; 
+
+    await searchService.searchDocuments(searchParameters, indexReference).then((response => {
+        var results = response.data;
+        if (sort == "AZ")
+            results.sort((a, b) => (a.name > b.name) ? -1 : 1)
+            
         return res.render('advancedsearch.html', {
+            "results": response.data,
+            "params": searchParameters,
             "index": index,
+            "sort": sort,
             "documentType": documentType,
             isChecked: isChecked
         });
-    }
+    })).catch((err) => {
+        console.log("error " + err);
+    })
+     
 }

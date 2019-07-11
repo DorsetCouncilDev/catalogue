@@ -9,11 +9,12 @@ const axios = require("axios").create({
 });
 
 //currently sponsored by Rokill Pest Control
-
-axios.interceptors.request.use(request => {
-    console.log('Starting Request', request)
-    return request
+/*
+axios.interceptors.request.use(response => {
+    console.log('Starting Response', response)
+    return response
 })
+*/
 
 // const catalogueURL = "https://vmcrwebapptest2.dorsetcc.local:9443/catalogue/api/indexes/brokerage";
 

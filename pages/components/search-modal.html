@@ -1,0 +1,36 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="" method="POST" id="searchForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="list-group">
+                                {% for property in documentType.properties %}
+                                <a class="list-group-item list-group-item-action" id="nav-{{property.reference}}-tab"
+                                    data-toggle="tab" href="#nav-{{property.reference}}" role="tab"
+                                    aria-controls="nav-{{property.reference}}"
+                                    aria-selected="true">{{property.name}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-xs-8 d-flex justify-content-center p-5">
+                            <div class="tab-content" id="nav-tabContent">
+                                {% for property in documentType.properties %}
+                                <div class="tab-pane fade show" id="nav-{{property.reference}}" role="tabpanel" aria-labelledby="nav-{{property.reference}}-tab">
+                                    {% include "components/property-search-item.html" %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

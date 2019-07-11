@@ -1,22 +1,47 @@
+{% if property.type == 'Boolean'%}
+
+<div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="{{property.reference}}" name="{{property.reference}}" type="checkbox" value="{{property.reference}}" {% if isChecked(property.reference,property.reference) %}checked{% endif %}>
+        <label class="govuk-label govuk-checkboxes__label" for="{{property.reference}}">
+                {{property.name}}
+        </label> </div>
+
+{% endif %}
 
 
-{% if property.type == 'Text' %}
-<div class="form-group mt-4 mb-4">
-    <label class="mb-0" for="{{property.reference}}" class="mb-0">{{property.name}}</label>
-    <input class="form-control form-control-sm" type="text" name="{{property.reference}}" value="{{params.properties[property.reference]}}">
-</div>
+{% if property.type == 'Number'%}
+
+<div class="govuk-form-group">
+        <label class="govuk-label" for="{{property.reference}}">
+                {{property.name}}
+        </label>
+        <input class="govuk-input" id="{{property.reference}}" name="{{property.reference}}" type="number" value="{{params.properties[property.reference]}}">
+      </div>
+
+{% endif %}
+
+{% if property.type == 'Text'%}
+
+<div class="govuk-form-group">
+        <label class="govuk-label" for="{{property.reference}}">
+                {{property.name}}
+        </label>
+        <input class="govuk-input" id="{{property.reference}}" name="{{property.reference}}" type="text" value="{{params.properties[property.reference]}}">
+      </div>
 {% endif %}
 
 {% if (property.type == 'Checkbox') or (property.type == 'List') %}
 <p>{{property.name}}</p>
 
  {% for option in property.values %}
-<div class="form-group mt-4 mb-4">
-            <div class="multiple-choice">
-                    <input type="checkbox" class="form-control" id="{{property.reference}}-{{loop.index}}" name="{{property.reference}}" value="{{option}}" {% if isChecked(property.reference,option) %}checked{% endif %}  >
-                    <label for="{{property.reference}}-{{loop.index}}"  class="mutliple-choice-label small">{{option}}</label>
-                </div>
-            </div>
+
+ <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="{{property.reference}}-{{loop.index}}" name="{{property.reference}}" type="checkbox" value="{{option}}" {% if isChecked(property.reference,option) %}checked{% endif %} >
+        <label class="govuk-label govuk-checkboxes__label" for="{{property.reference}}">
+                {{property.name}}
+        </label> </div>
+
+
             {% endfor %}
 
 {% endif %}
@@ -25,8 +50,14 @@
 
 
 {% if property.type == 'TextArea' %}
-<div class="form-gorup mt-4 mb-4">
-    <label for="{{property.reference}}">{{property.name}}</label>
-    <textarea class="form-control form-control-sm" rows="5" name="{{property.reference}}" id="{{property.reference}}"></textarea>
-</div>
+
+<div class="govuk-form-group">
+        <label class="govuk-label" for="{{property.reference}}">
+                {{property.name}}
+        </label>
+       
+        <textarea class="govuk-textarea" id="{{property.reference}}" name="{{property.reference}}" rows="5"></textarea>
+      </div>
+
+
 {% endif %}

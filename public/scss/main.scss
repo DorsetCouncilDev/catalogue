@@ -1,124 +1,30 @@
-// @import "~govuk_template_jinja/assets/stylesheets/fonts";
-$blue : #09476D;
-$indigo : #6610f2;
-$purple : #2e358b;
-$pink : pink;
-$red : #b10e1e;
-$orange : orange;
-$yellow : yellow;
-$green : darkgreen;
-$teal : #20c997;
-$cyan : #17a2b8;
+@import 'govuk-frontend/all';
 
-$warning: $orange;
-$enable-rounded : false;
-$enable-shadows : false;
 
-$font-size-base: 1rem * 1.1875;
-$input-border-color: black;
-$input-focus-border-color: $orange;
-$input-btn-focus-color : $orange;
-$input-btn-focus-box-shadow : $orange;
-
-$alert-border-level: 0;
-
-$container-max-widths: ( sm: 640px,
-md: 820px,
-lg: 960px,
-xl: 1140px) !default;
-
-$font-family-base: arial;
-
-@import './node_modules/bootstrap/scss/bootstrap';
-@import 'multiple-choice';
-
-.heading-1{
-    font-size:28px;
-    font-weight:600;
+.dorset-council_header{
+    background: hsl(203, 85%, 23%);
 }
-.heading-2{
-    font-size:24px;
-    font-weight:600;
+.govuk-header__container{
+    border-bottom:none;
+    margin-bottom:0;
 }
-.heading-3{
-    font-size: 22px;
-}
-.heading-4{
-    font-size: 19px;
-    font-weight: 600;
+.govuk-header__navigation-item--active a:link, .govuk-header__navigation-item--active a:hover, .govuk-header__navigation-item--active a:visited{
+    color:hsl(191,81%,48%);
+
 }
 
-@import 'mixins/breakpoints';
-
-.white-header {
-    display: flex;
-    padding: 5px;
-    margin-bottom: 0;
-
-    .logo {
-        height:90px;
-        margin-right:20px;
-        /* Negative margin to move logo closer to left side, breaking out of bootstrap container. */
-        margin-left:-15px;
-        /* content:url("../images/dorset-council-logo-circle-white.PNG");      */
-    }
-
-    .title {
-        color: #3F3F3F;
-        font-size: 24px;
-        font-weight: 500;
-        margin-top: 12px;
+.govuk-header__navigation-item--active.govuk-header__link{
+    &:focus{
+        color:black;
     }
 }
 
-@include breakpoint(medium) {
-    .white-header {
-        margin-bottom:30px;
-        .logo {
-            margin-left:0;
-            margin-right:50px;
-            /* content:url("../images/dorsetcouncil-logo.svg");   */    
-        }
-        .title{
-            font-size:48px;
-            margin-top: 5px;
-        }
-    }
-}
 
-.breadcrumb {
-    background: none;
-    padding:0;
-    .active{
-        color: black;
-    }
-}
- 
+// if last breadcrumb item is too long, use ellipsis on the end
+.govuk-breadcrumbs__list-item-use-ellipsis{
+    white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 50%;
 
-a{
-    color:#005EA5;
-&:focus{
-    outline:orange solid 2px;
-}
-&:hover{
-    color:#2B8CC4;
-}
-}
-
-.searching{
-    transition:opacity .5s;
-    opacity:.2;
-}
-
-#resultSection{
-    animation:results-entry 1s;
-}
-
-@keyframes results-entry {
-    0% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
   }

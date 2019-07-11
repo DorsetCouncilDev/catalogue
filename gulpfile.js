@@ -4,7 +4,9 @@ var gutil = require('gulp-util');
 var nodemon = require('nodemon');
 var browserSync = require('browser-sync').create();
 
-function startNodemon(done) {
+const { watch } = require('gulp');
+
+function startNodemon() {
     const STARTUP_TIMEOUT = 5000;
     const server = nodemon({
       script: 'app.js',
@@ -14,7 +16,7 @@ function startNodemon(done) {
   
     const onReady = () => {
       starting = false;
-      done();
+
     };
   
     server.on('start', () => {
@@ -29,31 +31,38 @@ function startNodemon(done) {
       }
     });  
   }
-  function startBrowserSync(done){
+  function startBrowserSync(){
     browserSync.init({
       proxy: "http://BR90RWGBJ:3000",
       files: ["public/**/*.*"],
       browser: "chrome",
       port: 5000,
-    }, done);
+      open:false
+    });
   }
+  function reloadBroweserSync(cb){
+    browserSync.reload();
+
+}
+
+  function compileSass(cb) {
+    gulp.src('public/**/*.scss')
+      .pipe(sass({
+        includePaths: 'node_modules'
+       }))
+       .on('error', gutil.log)
+      .pipe(gulp.dest('public/css'));
+      return cb;
+  };
 
 
-  gulp.task('sass', function(done) {
-    gulp.src('public/scss/*.scss')
-    .pipe(sass({style: 'expanded'}))
-      .on('error', gutil.log)
-    .pipe(gulp.dest('public/css'))
-    done();
-  });
+  function defaultTask(cb){
+    compileSass();
+    startNodemon();
+    startBrowserSync();
+    watch('public/scss/**/*.scss',gulp.series(compileSass));
+    watch('pages/*.html').on("change",reloadBroweserSync);
+}
 
-  gulp.task('watch',gulp.series(['sass']),function(){
-    gulp.watch('public/scss/**/*.scss',[sass]);
-    gulp.watch('pages/*.html',browserSync.reload);
-    browserSync.reload;
-  
-    
-});
+exports.default = defaultTask;
 
-  gulp.task('server', gulp.series(startNodemon, startBrowserSync));
-  gulp.task('default', gulp.series('server', 'watch'));

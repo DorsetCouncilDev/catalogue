@@ -3,8 +3,8 @@ const axios = require("axios").create({
 })
 
 /*
-axios.interceptors.request.use(request => {
-  console.log('Starting Request', request)
+axios.interceptors.response.use(response => {
+  console.log('Starting Response ', response)
   return request
 })
 */
@@ -18,8 +18,10 @@ exports.getIndex = async function(indexReference) {
 }
  exports.getIndexes = async function(){
   var indexes = null; 
-  await axios.get().then((response)=>{
+  await axios.get("").then((response)=>{
     indexes = response.data;
+  }).catch((err)=>{
+    console.log(err)
   })
   return indexes;
 }
