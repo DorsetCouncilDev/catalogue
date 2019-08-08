@@ -1,19 +1,26 @@
 <div class="govuk-grid-column-one-half">
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-            {% if results.length == 0 %}
+                {% if errorMessage %}
+                <h2 class="govuk-heading-m">{{errorMessage}}</h2>
+            {% elif results.length == 0 %}
                 <h2 class="govuk-heading-m">No results found</h2>
-            {% else %}
+            {% elif results.length > 0 %}
                 <h2 class="govuk-heading-m">Found {{results.length}} documents</h2>
             {% endif %}
         </div>
+
         <div class="govuk-grid-column-one-third">
+                {% if not errorMessage %}
             <a href="?sort={{sort}}" class="govuk-link">Sort - {{sort}}</a>
+                {% endif %}
         </div>
     </div>
+
+   
     <ul class="govuk-list">
         {% for result in results %}
-        {% include "components/search-result-document.html" %}
+            {% include "components/search-result-document.html" %}
         {%- endfor %}
     </ul>
 </div>

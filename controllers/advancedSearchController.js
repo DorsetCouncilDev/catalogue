@@ -2,34 +2,45 @@ const searchService = require("../services/searchService");
 var indexService = require("../services/indexService");
 
 exports.search = async function (req, res) {
-    var indexReference = req.session.indexReference
+
+function isChecked(typeRef, item) {
+    if (typeof searchParameters != 'undefined' && typeof searchParameters.properties != 'undefined' && typeof searchParameters.properties[typeRef] != 'undefined') {
+        var list = searchParameters.properties[typeRef]
+        return list.includes(item);
+    }
+    return false;
+} 
+    var indexReference = req.params.indexName; 
     var index = await indexService.getIndex(indexReference);
     var documentTypes = index.documentTypes;
+    var documentType = null;
+
+    if(req.body.documentType){
+        console.log("set doc type: " + req.body.documentType)
+        var documentTypeReference = req.body.documentType;
+        documentType = documentTypes.find((dt)=>{
+            return dt.reference == documentTypeReference;
+        })
+        req.session.documentType = documentType;
+    }
+    else if(req.session.documentType)
+        documentType = req.session.documentType;
+    else
+        documentType = documentTypes[0];
+
     var searchParameters = {};
 
-    var documentTypeReference = req.params.documentType;
-    var documentType = documentTypes.find(type => {
-        return type.reference == documentTypeReference;
-    })
-
-    function isChecked(typeRef, item) {
-        if (typeof searchParameters != 'undefined' && typeof searchParameters.properties != 'undefined' && typeof searchParameters.properties[typeRef] != 'undefined') {
-            var list = searchParameters.properties[typeRef]
-            return list.includes(item);
-        }
-        return false;
-    }
-
-    if ((Object.keys(req.body).length > 0)) {
+    if ((Object.keys(req.body).length > 0 && !req.body.documentType)) {
+        searchParameters.documentTypes = [documentType.reference];
         searchParameters.properties = searchService.parsePropertiesSearch(documentType.properties, req.body);
         req.session.advancedSearchParameters = searchParameters;
     }
     else if (req.session.advancedSearchParameters){
         searchParameters = req.session.advancedSearchParameters;
+        searchParameters.documentTypes = searchParameters.documentTypes[0];
     }
-    searchParameters.documentTypes = [documentType.reference];
-
-    var sort = "AZ";
+    
+    var sort = "ZA";
     if(req.query.sort && req.query.sort == "AZ")
         sort = "ZA";
     else if(req.query.sort && req.query.sort == "ZA")
@@ -43,17 +54,20 @@ exports.search = async function (req, res) {
         var results = response.data;
         if (sort == "AZ")
             results.sort((a, b) => (a.name > b.name) ? -1 : 1)
-            
-        return res.render('advancedsearch.html', {
-            "results": response.data,
-            "params": searchParameters,
-            "index": index,
-            "sort": sort,
-            "documentType": documentType,
-            isChecked: isChecked
-        });
+        if(Array.isArray(response.data)){  
+            return res.render('advancedsearch.html', {
+                "results": response.data,
+                "params": searchParameters,
+                "index": index,
+                "sort": sort,
+                "documentType": documentType,
+                "documentTypes": documentTypes,
+                isChecked: isChecked         
+            });
+        }
+        else
+            return res.render("advancedsearch.html",{"errorMessage":"An error has occured","index":index,isChecked:isDocumentTypeChecked,"params":params});
     })).catch((err) => {
-        console.log("error " + err);
+        return res.render("advancedsearch.html",{"errorMessage":"An error has occured","index":index,isChecked:isDocumentTypeChecked,"params":params});
     })
-     
 }

@@ -5,7 +5,7 @@ const axios = require("axios").create({
 /*
 axios.interceptors.response.use(response => {
   console.log('Starting Response ', response)
-  return request
+  return response
 })
 */
 

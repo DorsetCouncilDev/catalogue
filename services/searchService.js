@@ -33,7 +33,8 @@ exports.parseDocumentTypesSearch = function (allDocumentTypes, requestBody) {
 }
 
 exports.parsePropertiesSearch = function (properties, requestBody) {
-    console.log("parsePropertiesSearch ");
+
+
     var currParamRef = "";
     var currValue = "";
     var currProperty;
@@ -44,17 +45,12 @@ exports.parsePropertiesSearch = function (properties, requestBody) {
         if (requestBody[currProperty.reference]) {
 
             currParamRef = currProperty.reference;
-
-            if(currProperty.type == 'Checkbox' || currProperty.type == 'List'){
-                currValue = [];
-                for(var valueIndex = 0; valueIndex<requestBody[currParamRef].length;valueIndex++)
-                    currValue.push(requestBody[currParamRef]);
-            } 
-            else
-                currValue = requestBody[currParamRef]
-                searchProperties[currParamRef] = currValue;
+            currValue = requestBody[currParamRef]
+            searchProperties[currParamRef] = currValue;
         }
     }
+  console.log("search params")
+  console.log(searchProperties)
     return searchProperties;
 }
 

@@ -1,0 +1,39 @@
+ { "name": "Document 1",
+   reference: 'document-1',
+   index: { 
+      name: 'Test', 
+      reference: 'test' 
+  },
+  documentType: { 
+    name: 'Document type 1', 
+    reference: 'document-type-1' 
+  },
+  properties:
+    { 
+        'Boolean property': [Object],
+        'Checkbox property': [Object],
+        'Date property': [Object],
+        'Decimal property': [Object],
+        'List property': [Object],
+        Number: [Object],
+        'Number range property': [Object],
+        'Text property': [Object],
+        'Textarea property': [Object] 
+  },
+  locations: [] 
+},
+  { name: 'Document 2',
+    reference: 'document-2',
+    index: { name: 'Test', reference: 'test' },
+    documentType: { name: 'Document type 2', reference: 'document-type-2' },
+    properties:
+     { 'Boolean property': [Object],
+       'Checkbox property': [Object],
+       'Date property': [Object],
+       'Decimal property': [Object],
+       'List property': [Object],
+       Number: [Object],
+       'Number range property': [Object],
+       'Text property': [Object],
+       'Textarea property': [Object] },
+    locations: [] }

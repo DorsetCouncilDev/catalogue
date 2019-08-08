@@ -12,3 +12,7 @@ exports.getDocumentTypes = async function(indexName) {
 
     return documentTypes;
   }
+
+  exports.getDocumentType = async function(documentTypeReference){
+        
+  }

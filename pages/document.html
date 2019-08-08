@@ -34,28 +34,20 @@
         
   <main class="govuk-width-container">
 
-    {% from "components/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+      <div class="govuk-breadcrumbs">
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/catalogue/{{index.reference}}">documents search</a>
+            </li>
 
-    {{ govukBreadcrumbs({
-      items: [
-        {
-          text: "Indexes",
-          href: "/catalogue"
-        },
-        {
-          text: index.name,
-          href: "/catalogue/" + index.reference
-        },
-        {
-          text: documentType.name,
-          href: "/catalogue/" + index.reference + "/document-type/" + documentType.reference
-        },
-        {
-          text: document.name
-        }
-      ]
-    }) }}
+          <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/catalogue/{{index.reference}}/advanced-search">advanced search</a>
+            </li>
 
+          <li class="govuk-breadcrumbs__list-item" aria-current="page">{{document.name}}</li>
+</ol>
+</div>
+  {{fromAdvancedSearch}}
     <h1 class="govuk-heading-xl govuk-!-font-size-27 govuk-!-margin-top-4">{{document.name}}</h1>
 
 
@@ -79,6 +71,8 @@
             {% endfor %}
     
           </dl>
+
+ 
 
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVLqUxdgLoBovYi83r-2YZNgvZFlsJR2g&callback=initMap" async defer></script>
 
@@ -109,8 +103,22 @@
                 {% endfor %}
             </section>
             {% endif %}
-    </div>
-    </div>
 
+            {% if document.images.length > 0 %}
+            <section class="govuk-!-margin-top-6">
+            <h2 class="govuk-heading-m">Images</h2>
+        
+             <div id="imagesContainer">
+                {% for image in document.images %}
+                <div class="image-container">
+                  <img class="document-image" src="{{image.sources[0].url}}" alt={{image.name}}>
+            </div>
+            {% endfor %}
+            </div> 
+            </section>
+            {% endif %}
+    </div>
+    </div>
+  </main>
 </body>
 </html>

@@ -4273,12 +4273,16 @@
     .govuk-\!-width-one-quarter {
       width: 25% !important; } }
 
+.govuk-header__container.govuk-width-container {
+  max-width: 1300px; }
+
 .dorset-council_header {
   background: #09466d; }
 
 .govuk-header__container {
   border-bottom: none;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  max-width: 1300px; }
 
 .govuk-header__navigation-item--active a:link, .govuk-header__navigation-item--active a:hover, .govuk-header__navigation-item--active a:visited {
   color: #17b9de; }
@@ -4291,3 +4295,13 @@
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 50%; }
+
+#imagesContainer {
+  width: 100%;
+  display: flex; }
+  #imagesContainer .image-container {
+    padding: 10px;
+    border: 1px solid grey;
+    width: 150px; }
+    #imagesContainer .image-container .document-image {
+      width: 100%; }

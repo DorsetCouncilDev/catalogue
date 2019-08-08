@@ -2,9 +2,8 @@
 
 <div class="govuk-checkboxes__item">
         <input class="govuk-checkboxes__input" id="{{property.reference}}" name="{{property.reference}}" type="checkbox" value="{{property.reference}}" {% if isChecked(property.reference,property.reference) %}checked{% endif %}>
-        <label class="govuk-label govuk-checkboxes__label" for="{{property.reference}}">
-                {{property.name}}
-        </label> </div>
+        <label class="govuk-label govuk-checkboxes__label" for="{{property.reference}}">{{property.name}}</label> 
+</div>
 
 {% endif %}
 
@@ -12,37 +11,37 @@
 {% if property.type == 'Number'%}
 
 <div class="govuk-form-group">
-        <label class="govuk-label" for="{{property.reference}}">
-                {{property.name}}
-        </label>
+        <label class="govuk-label" for="{{property.reference}}">{{property.name}}</label>
         <input class="govuk-input" id="{{property.reference}}" name="{{property.reference}}" type="number" value="{{params.properties[property.reference]}}">
-      </div>
+</div>
 
 {% endif %}
 
 {% if property.type == 'Text'%}
-
 <div class="govuk-form-group">
-        <label class="govuk-label" for="{{property.reference}}">
-                {{property.name}}
-        </label>
+        <label class="govuk-label" for="{{property.reference}}">{{property.name}}</label>
         <input class="govuk-input" id="{{property.reference}}" name="{{property.reference}}" type="text" value="{{params.properties[property.reference]}}">
-      </div>
+</div>
 {% endif %}
 
-{% if (property.type == 'Checkbox') or (property.type == 'List') %}
-<p>{{property.name}}</p>
+{% if property.type == 'Checkbox' %}
+<div class="govuk-form-group">
+<fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <h1 class="govuk-fieldset__heading">{{property.name}}</h1>
+        </legend>
+
 
  {% for option in property.values %}
 
  <div class="govuk-checkboxes__item">
         <input class="govuk-checkboxes__input" id="{{property.reference}}-{{loop.index}}" name="{{property.reference}}" type="checkbox" value="{{option}}" {% if isChecked(property.reference,option) %}checked{% endif %} >
-        <label class="govuk-label govuk-checkboxes__label" for="{{property.reference}}">
-                {{property.name}}
-        </label> </div>
+        <label class="govuk-label govuk-checkboxes__label" for="{{property.reference}}">{{option}}</label> 
+</div>
+{% endfor %}
+</fieldset>
+</div>
 
-
-            {% endfor %}
 
 {% endif %}
 
@@ -60,4 +59,24 @@
       </div>
 
 
+{% endif %}
+
+{% if property.type == 'List' %}
+<div class="govuk-form-group">
+        <label class="govuk-label" for="sort">{{property.name}}</label>
+        <select class="govuk-select" id="sort" name="sort">
+                        <option disabled selected>choose</option> 
+                {% for option in property.values %}
+                <option value="{{option}}">{{option}}</option>     
+                {% endfor %}
+        </select>
+    </div>
+
+{% endif %}
+
+{% if property.type == 'NumberRange' %}
+<div class="govuk-form-group">
+                <label class="govuk-label" for="{{property.reference}}">{{property.name}} Range</label>
+                <input class="govuk-input" id="{{property.reference}}" name="{{property.reference}}" type="number" value="{{params.properties[property.reference]}}">
+        </div>
 {% endif %}

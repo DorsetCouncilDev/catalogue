@@ -1,12 +1,15 @@
 @import 'govuk-frontend/all';
 
-
+.govuk-header__container.govuk-width-container{
+    max-width:1300px;
+}
 .dorset-council_header{
     background: hsl(203, 85%, 23%);
 }
 .govuk-header__container{
     border-bottom:none;
     margin-bottom:0;
+    max-width:1300px;
 }
 .govuk-header__navigation-item--active a:link, .govuk-header__navigation-item--active a:hover, .govuk-header__navigation-item--active a:visited{
     color:hsl(191,81%,48%);
@@ -28,3 +31,16 @@
       max-width: 50%;
 
   }
+
+ #imagesContainer{
+     width:100%;
+     display:flex;
+     .image-container{
+         padding:10px;
+         border:1px solid grey;
+         width:150px;
+         .document-image{
+             width:100%;
+         }
+     }
+ }
