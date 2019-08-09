@@ -6,6 +6,7 @@ function initMap(){
     var locationStreetLongitudes = document.getElementsByClassName('location-street-lng');
     var locationStreetHeadings = document.getElementsByClassName('location-street-heading');
     var locationStreetPitches = document.getElementsByClassName('location-street-pitch');
+    if(locationLatitudes != null && locationLatitudes.length > 0){
     var lat = Number(locationLatitudes[0].value);
     var lng = Number(locationLongitudes[0].value);
     var position = { lat: lat, lng: lng };
@@ -55,4 +56,5 @@ function initMap(){
             zoom: 1
         });  
     }
+}
 }

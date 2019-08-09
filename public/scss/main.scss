@@ -23,24 +23,4 @@
 }
 
 
-// if last breadcrumb item is too long, use ellipsis on the end
-.govuk-breadcrumbs__list-item-use-ellipsis{
-    white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      max-width: 50%;
-
-  }
-
- #imagesContainer{
-     width:100%;
-     display:flex;
-     .image-container{
-         padding:10px;
-         border:1px solid grey;
-         width:150px;
-         .document-image{
-             width:100%;
-         }
-     }
- }
+@import 'image-gallery';

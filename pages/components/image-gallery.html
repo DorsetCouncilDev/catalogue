@@ -1,0 +1,99 @@
+<section class="govuk-!-margin-top-8">
+        <h2 class="govuk-heading-m">Images</h2>
+    <div id="imageContainer">
+        {% if document.images.length == 1 %}
+    <img src="{{document.images[0].sources[0].url}}" id="singleImage">
+    {% else %}
+    <div id="imageGallery" v-if="images.length > 1">
+      <div id="arrowLeftButton" @click="nextImage('l')"><div class="arrow-left"></div></div>
+      <div id="arrowRightButton" @click="nextImage('r')"> <div class="arrow-right"></div></div>
+      <div class="images">
+            {% for image in document.images %}
+        <div class="image-holder">
+          <img src="{{image.sources[0].url}}" class="galleryImage" alt="{{iamge.name}}>
+        </div>
+        {% endfor %}
+      </div>
+      <div id="imageThumbsContainer">
+{% for image in document.images %}
+   <div class="thumbnail-holder">
+
+          <img src="{{image.sources[0].url}}" class="image-thumbnail" alt="{{iamge.name}}">
+          </div>
+{% endfor %}
+
+          </div>
+    </div>
+{% endif %}
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var currentIndex = 0;
+        var images = document.querySelectorAll(".galleryImage");
+        var thumbnails = document.querySelectorAll(".thumbnail-holder");
+        var rightScrollBtn = document.getElementById("arrowRightButton");
+        var leftScrollBtn = document.getElementById("arrowLeftButton");
+
+   
+        
+        
+        for(i in thumbnails){
+            thumbnails[i].index = i;
+            images[i].index = i;
+        }
+
+        selectImage(currentIndex);
+
+        function selectImage(selectedImageIndex){
+            currentIndex = selectedImageIndex;
+            images.forEach(function(image){
+                if(image.index == selectedImageIndex)
+                    image.classList.add("selected");
+                else
+                    image.classList.remove("selected");
+            })
+            thumbnails.forEach(function(thumbnail){
+                if(thumbnail.index == selectedImageIndex)
+                    thumbnail.classList.add("selected");
+                else
+                    thumbnail.classList.remove("selected");
+            })
+        }
+
+
+            thumbnails.forEach(function(thumbnail){
+                thumbnail.addEventListener("click", function(event){
+                selectImage(thumbnail.index);
+            })
+            })
+          
+            rightScrollBtn.addEventListener("click",function(){
+            console.log("clicked right scroll btn")
+            console.log("current index: " + currentIndex);
+            if(currentIndex == (images.length-1))
+                currentIndex = 0;
+            else
+                currentIndex++;
+
+            selectImage(currentIndex);
+        })
+
+        leftScrollBtn.addEventListener("click",function(){
+            console.log("clicked left scroll btn")
+            console.log("current index: " + currentIndex);
+            if(currentIndex == 0)
+                currentIndex = (images.length-1)
+            else
+                currentIndex--;
+
+            selectImage(currentIndex);
+        })
+
+    }, false);
+
+    </script>
+
+
+  </section>
+

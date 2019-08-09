@@ -50,8 +50,8 @@
   {{fromAdvancedSearch}}
     <h1 class="govuk-heading-xl govuk-!-font-size-27 govuk-!-margin-top-4">{{document.name}}</h1>
 
-
-    <h2 class="govuk-heading-m">Properties</h3>
+<section class="govuk-!-margin-top-8">
+    <h2 class="govuk-heading-m">Properties</h2>
 
       <dl class="govuk-summary-list">
             {% for p, property in document.properties %}
@@ -72,13 +72,13 @@
     
           </dl>
 
- 
+        </section>
 
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVLqUxdgLoBovYi83r-2YZNgvZFlsJR2g&callback=initMap" async defer></script>
 
 
             {% if document.locations.length > 0 %}
-            <section>
+            <section class="govuk-!-margin-top-8">
               <h2 class="govuk-heading-m">Location</h2>
 
                 {% for location in document.locations %}
@@ -102,22 +102,14 @@
                   </section>
                 {% endfor %}
             </section>
-            {% endif %}
+     
 
-            {% if document.images.length > 0 %}
-            <section class="govuk-!-margin-top-6">
-            <h2 class="govuk-heading-m">Images</h2>
-        
-             <div id="imagesContainer">
-                {% for image in document.images %}
-                <div class="image-container">
-                  <img class="document-image" src="{{image.sources[0].url}}" alt={{image.name}}>
-            </div>
-            {% endfor %}
+           
             </div> 
             </section>
             {% endif %}
     </div>
+    {% include "components/image-gallery.html" %}
     </div>
   </main>
 </body>
